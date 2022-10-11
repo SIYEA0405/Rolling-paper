@@ -1,0 +1,23 @@
+{
+  "name": "rolling-paper",
+  "version": "1.0.0",
+  "description": "Rolling-paper web site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SIYEA0405/Rolling-paper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SIYEA0405/Rolling-paper/issues"
+  },
+  "homepage": "https://github.com/SIYEA0405/Rolling-paper#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.6.5"
+  }
+}
