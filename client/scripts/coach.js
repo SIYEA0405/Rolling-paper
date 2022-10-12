@@ -65,6 +65,7 @@ const modal = `
               placeholder="실명을 입력해주세요."
               required
             />
+            ></>
           </div>
           <div >
             <p>내용</p>
