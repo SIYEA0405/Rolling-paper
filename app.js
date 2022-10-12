@@ -18,11 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set("view engine", "ejs");
+app.engine('html', require('ejs').renderFile);
 app.set("views", __dirname + "/src/views");
 
-app.use("/css", express.static(path.resolve(__dirname, "client/css")));
-app.use("/img", express.static(path.resolve(__dirname, "client/images")));
-app.use("/js", express.static(path.resolve(__dirname, "client/scripts")));
 
 //load routers(서버에게 주고 받을 경로)
 app.get("/", (req, res) => {
