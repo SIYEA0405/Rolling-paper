@@ -13,8 +13,8 @@ db.once("open", () => {
 });
 
 //각 코치 id별로 모든 리뷰 찾기
-route.get("/:id", find)
+route.get("/:id/posts", find)
 //각 코치 id별로 모든 리뷰 생성한 데이터 보내주기
-route.post("/:id", create);
+route.post("/:id/posts", create);
 
 module.exports = route;

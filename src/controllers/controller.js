@@ -1,45 +1,56 @@
 const UserModel = require("./../models/model");
 
-// create and save new user 유저들 리뷰저장
+// create and save new user 유저들의 post 생성 후 저장
 exports.create = async (req, res) => {
   if (!req.body) {
-    res.status(400).send({ message: "Connect can not be empty" });
+    res
+      .status(400)
+      .json({ message: err.message || "Connect can not be empty" });
     return;
   }
-  //new user 새로운 유저data 생성하기
+  // 새로운 유저 data 생성하기
   const modelName = req.params.id;
   const user = await new UserModel(modelName)({
     userName: req.body.userName,
     comment: req.body.comment,
     //password: req.body.password,
   });
-  //new user save 위의 새유저 data 저장하기
+
+  // 새로운 유저가 만든 멘트를 id에 맞는 DB에 저장
   user
     .save()
-    .then((data) => {
-      res.json(data);
+    .then(() => {
+      //json 으로 필요한 데이터만 가공
+      return res.status(200).json({
+        data: req.body,
+      });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message ||
           "Some error occurrend while creating a create operation",
       });
+      return;
     });
 };
 
-// retrieve and return all users / retrieve and return single user
+// modelName인 req.baseUrl값으로 db에서 dbName을 찾아서 해당 데이터베이스 안의 모든 필드를 가지고온다.
 exports.find = async (req, res) => {
   const modelName = req.params.id;
-  await UserModel(modelName).find({})
+  await UserModel(modelName)
+    .find({})
     .then((data) => {
       res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Error occurrend while retriving data information",
-      });
+      res
+        .status(500)
+        .json({
+          message:
+            err.message || "Error occurrend while retriving data information",
+        });
+      return;
     });
 };
 
