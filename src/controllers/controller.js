@@ -7,8 +7,7 @@ exports.create = async (req, res) => {
     return;
   }
   //new user 새로운 유저data 생성하기
-  console.log(req.body);
-  let modelName = req.params.id;
+  const modelName = req.params.id;
   const user = await new UserModel(modelName)({
     userName: req.body.userName,
     comment: req.body.comment,
@@ -21,6 +20,7 @@ exports.create = async (req, res) => {
     .then((data) => {
       console.log(data);
       res.send(data);
+      alert("Comment 등록완료!")
     })
     .catch((err) => {
       res.status(500).send({
@@ -33,22 +33,16 @@ exports.create = async (req, res) => {
 
 // retrieve and return all users / retrieve and return single user
 exports.find = async (req, res) => {
-  //reqPath를 가지고 database name 찾기 ) db[reqPath]
-  console.log(req);
-  console.log(res);
-  UserModel.find({
-    name: {
-      $exists: true,
-    },
-  })
-    .then((menu) => {
-      console.log(menu);
-      res.send(menu);
+  const modelName = req.params.id;
+  await UserModel(modelName).find({})
+    .then((data) => {
+      console.log(data);
+      res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Error occurrend while retriving menu information",
+          err.message || "Error occurrend while retriving data information",
       });
     });
 };
@@ -60,8 +54,8 @@ exports.update = (req, res) => {
       .status(400)
       .send({ message: "Data to update can not be empty" });
   }
-  const id = req.params.id;
-  UserSchema.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  const modelName = req.params.id;
+  UserSchema(modelName).findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
@@ -78,8 +72,8 @@ exports.update = (req, res) => {
 
 // delete a user with specified user id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
-  UserSchema.findByIdAndDelete(id)
+  const modelName = req.params.id;
+  UserSchema(modelName).findByIdAndDelete(id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
