@@ -1,7 +1,7 @@
 const UserModel = require("./../models/model");
-
 // create and save new user 유저들의 post 생성 후 저장
 exports.create = async (req, res) => {
+  const modelName = req.params.id;
   if (!req.body) {
     res
       .status(400)
@@ -9,7 +9,6 @@ exports.create = async (req, res) => {
     return;
   }
   // 새로운 유저 data 생성하기
-  const modelName = req.params.id;
   const user = await new UserModel(modelName)({
     userName: req.body.userName,
     comment: req.body.comment,
