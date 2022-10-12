@@ -28,5 +28,6 @@ app.get("/", (req, res) => {
   //res.send("우리 서버 영업합니다..");
   res.render("index.html");
 });
+app.get("/:id", (req, res) => res.render("coach.html"));
 
 app.use("/", router);

@@ -1,35 +1,8 @@
-const MockData = [
-  {
-    name: "test",
-    content: "lorem ipsum............................",
-  },
-  {
-    name: "test",
-    content: "lorem ipsum............................",
-  },
-  {
-    name: "test",
-    content: "lorem ipsum............................",
-  },
-  {
-    name: "test",
-    content: "lorem ipsum............................",
-  },
-  {
-    name: "test",
-    content: "lorem ipsum............................",
-  },
-  {
-    name: "test",
-    content: "lorem ipsum............................",
-  },
-];
-
-const createLi = ({ name, content }) => {
+const createLi = ({ userName, comment }) => {
   const li = document.createElement("li");
   li.innerHTML = `
-        <p>이름: ${name}</p>
-        <p>- ${content}</p>
+        <p>이름: ${userName}</p>
+        <p>- ${comment}</p>
     `;
   return li;
 };
@@ -40,11 +13,12 @@ const addComment = (comment) => {
 const coachPage = async () => {
   const { pathname } = location;
   try {
-    // const data = await (await fetch(pathname)).json();
-    // console.log(data);
+    const data = await (await fetch(`${pathname}/posts`)).json();
     const ul = document.querySelector("ul");
+    // console.log(data);
     ul.innerHTML = "";
-    MockData.forEach((content) => ul.appendChild(createLi(content)));
+    data.forEach((content) => ul.appendChild(createLi(content)));
+    // MockData.forEach((content) => ul.appendChild(createLi(content)));
   } catch (e) {
     console.log(e);
   }
@@ -90,20 +64,23 @@ add_btn.addEventListener("click", () => {
   modalDiv.setAttribute("class", "modal_layout");
   modalDiv.innerHTML = modal;
   document.body.prepend(modalDiv);
-
+  modalDiv.addEventListener("click", ({ target }) => {
+    if (target.className === "modal_layout") {
+      document.body.removeChild(modalDiv);
+    }
+  });
   document
     .querySelector(".modal_submit_cancel")
     .addEventListener("click", () => {
       document.body.removeChild(modalDiv);
     });
-  modalDiv.querySelector("form").addEventListener("submit", async (e) => {
-    e.prenvetDefault();
+  document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
     const inputName = document.querySelector(".modal_main_name");
     const inputContent = document.querySelector(".modal_main_compliment");
     try {
       const { pathname } = location;
-      const confirm = confirm("등록하시겠습니까?");
-      if (confirm) {
+      if (confirm("등록하시겠습니까?")) {
         if (inputName.value.length >= 3 && inputContent.value.length >= 10) {
           const response = await (
             await fetch(`${pathname}/posts`, {
@@ -117,15 +94,11 @@ add_btn.addEventListener("click", () => {
               }),
             })
           ).json();
-          if (response.ok) {
-            document.body.removeChild(modalDiv);
-            addComment({
-              userName: inputName.value,
-              comment: inputContent.value,
-            });
-          } else {
-            alert("Error, 등록 실패");
-          }
+          document.body.removeChild(modalDiv);
+          addComment({
+            userName: inputName.value,
+            comment: inputContent.value,
+          });
         } else {
           alert("길이가 짧습니다.");
           inputName.focus();
