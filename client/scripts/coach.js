@@ -111,14 +111,17 @@ add_btn.addEventListener("click", () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                name: inputName.value,
-                cmt: inputContent.value,
+                userName: inputName.value,
+                comment: inputContent.value,
               }),
             })
           ).json();
           if (response.ok) {
             document.body.removeChild(modalDiv);
-            addComment({ name: inputName.value, comment: inputContent.value });
+            addComment({
+              userName: inputName.value,
+              comment: inputContent.value,
+            });
           } else {
             alert("Error, 등록 실패");
           }

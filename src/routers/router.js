@@ -8,13 +8,13 @@ const {create, find} = require("./../controllers/controller");
 const db = mongoose.connection;
 db.on("error", console.error);
 db.once("open", () => {
-  // 몽고디비 서버에 연결
+  // 몽고디비 서버에 연결완료시 뜨는 문구
   console.log("Connected to mongoDB server");
 });
 
-route.get("/:id", find);
+//각 코치 id별로 모든 리뷰 찾기
+route.get("/:id", find)
+//각 코치 id별로 모든 리뷰 생성한 데이터 보내주기
 route.post("/:id", create);
-//route.put("/:id", create);
-//route.delete("/:id", create);
 
 module.exports = route;

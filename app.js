@@ -17,15 +17,13 @@ app.listen(PORT, () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(express.static("client"));
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
+
 app.set("views", __dirname + "/src/views");
 
-app.use("/css", express.static(path.resolve(__dirname, "client/css")));
-app.use("/img", express.static(path.resolve(__dirname, "client/images")));
-app.use("/js", express.static(path.resolve(__dirname, "client/scripts")));
-
-//load routers(서버에게 주고 받을 경로)
+//메인페이지 기본 랜더링
 app.get("/", (req, res) => {
   //res.send("우리 서버 영업합니다..");
   res.render("index.html");

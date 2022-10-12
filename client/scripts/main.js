@@ -10,8 +10,8 @@ const init = () => {
         coach === "theory_coach"
           ? "/theory"
           : coach.startsWith("first")
-          ? "/first"
-          : "/second";
+          ? "/class1"
+          : "/class2";
       location.href = `${targetUri}`;
     })
   );

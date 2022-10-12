@@ -11,16 +11,13 @@ exports.create = async (req, res) => {
   const user = await new UserModel(modelName)({
     userName: req.body.userName,
     comment: req.body.comment,
-    password: req.body.password,
+    //password: req.body.password,
   });
-
   //new user save 위의 새유저 data 저장하기
   user
     .save()
     .then((data) => {
-      console.log(data);
-      res.send(data);
-      alert("Comment 등록완료!")
+      res.json(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -36,8 +33,7 @@ exports.find = async (req, res) => {
   const modelName = req.params.id;
   await UserModel(modelName).find({})
     .then((data) => {
-      console.log(data);
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -48,42 +44,42 @@ exports.find = async (req, res) => {
 };
 
 // Update new idetified user by user id
-exports.update = (req, res) => {
-  if (!req.body) {
-    return res
-      .status(400)
-      .send({ message: "Data to update can not be empty" });
-  }
-  const modelName = req.params.id;
-  UserSchema(modelName).findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot Update user with ${id}. Maybe user not found`,
-        });
-      } else {
-        res.send(data);
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({ message: "Error Update user information" });
-    });
-};
+// exports.update = (req, res) => {
+//   if (!req.body) {
+//     return res
+//       .status(400)
+//       .send({ message: "Data to update can not be empty" });
+//   }
+//   const modelName = req.params.id;
+//   UserSchema(modelName).findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+//     .then((data) => {
+//       if (!data) {
+//         res.status(404).send({
+//           message: `Cannot Update user with ${id}. Maybe user not found`,
+//         });
+//       } else {
+//         res.send(data);
+//       }
+//     })
+//     .catch((err) => {
+//       res.status(500).send({ message: "Error Update user information" });
+//     });
+// };
 
-// delete a user with specified user id in the request
-exports.delete = (req, res) => {
-  const modelName = req.params.id;
-  UserSchema(modelName).findByIdAndDelete(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot Delete user with ${id}. Maybe user not found`,
-        });
-      } else {
-        res.send({ message: "User was deleted successfully!" });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({ message: "Error Delete user information" });
-    });
-};
+// // delete a user with specified user id in the request
+// exports.delete = (req, res) => {
+//   const modelName = req.params.id;
+//   UserSchema(modelName).findByIdAndDelete(id)
+//     .then((data) => {
+//       if (!data) {
+//         res.status(404).send({
+//           message: `Cannot Delete user with ${id}. Maybe user not found`,
+//         });
+//       } else {
+//         res.send({ message: "User was deleted successfully!" });
+//       }
+//     })
+//     .catch((err) => {
+//       res.status(500).send({ message: "Error Delete user information" });
+//     });
+// };
