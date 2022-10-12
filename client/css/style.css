@@ -46,7 +46,6 @@ header {
 
   animation: star 0.9s linear infinite alternate;
   z-index: 0;
-  cursor: pointer;
   text-decoration: none;
 }
 

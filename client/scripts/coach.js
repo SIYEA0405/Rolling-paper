@@ -12,6 +12,20 @@ const addComment = (comment) => {
 };
 const coachPage = async () => {
   const { pathname } = location;
+  const coachName = document.querySelector(".coach_name");
+  coachName.innerText =
+    pathname === "/theory"
+      ? "박연미 코치님"
+      : pathname === "/class1"
+      ? "이현진 코치님"
+      : "조재훈 코치님";
+  const coachImg = document.querySelector("img");
+  coachImg.src =
+    pathname === "/theory"
+      ? "/images/이론.png"
+      : pathname === "/class1"
+      ? "/images/1반.png"
+      : "/images/2반.png";
   try {
     const data = await (await fetch(`${pathname}/posts`)).json();
     const ul = document.querySelector("ul");
@@ -39,7 +53,6 @@ const modal = `
               placeholder="실명을 입력해주세요."
               required
             />
-            ></>
           </div>
           <div >
             <p>내용</p>
