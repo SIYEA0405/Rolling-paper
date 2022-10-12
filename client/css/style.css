@@ -9,6 +9,7 @@
 
 body {
   width: 100%;
+  height: 100%;
   font-family: "Gowun Dodum", sans-serif;
   letter-spacing: 0.3rem;
   background-color: #dfdddf;
@@ -21,24 +22,31 @@ body {
 header {
   width: 100%;
   height: 200px;
+  margin-bottom: 2rem;
 
   text-align: center;
   font-weight: bold;
 
   background-color: #8680f9;
-  cursor: Default;
+
   user-select: none;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 }
 
 .greeting {
   font-size: 6rem;
   font-family: "Silkscreen", cursive;
   letter-spacing: 0.4rem;
-  line-height: 160%;
+  /* line-height: 120%; */
   color: rgb(49, 44, 49);
 
   animation: star 0.9s linear infinite alternate;
   z-index: 0;
+  text-decoration: none;
 }
 
 @keyframes star {
@@ -51,8 +59,8 @@ header {
 }
 
 .img_contanier {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   margin: 60px 30px 30px 30px;
 
   border: 5px double #9163f2;
@@ -61,9 +69,8 @@ header {
 }
 
 .img_contanier img {
-  width: 300px;
-  height: 300px;
-  padding-right: 10px;
+  width: 250px;
+  height: 250px;
 }
 
 .footer {
@@ -82,29 +89,12 @@ header {
 /* 메인 페이지 */
 /***************/
 
-.back {
-  position: absolute;
-  float: left;
-  margin: 30px 40px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: black;
-
-  text-decoration: none;
-  transition: width 0.3s linear;
-  z-index: 1;
-}
-
-.back:hover {
-  transform: scale(1.3, 1.3);
-}
-
 .select_coach {
   margin: 3% 5%;
   padding: 0;
   height: 530px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -113,6 +103,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 0 5%;
 
   border: 2px solid #6d49f2;
   border-top-left-radius: 20px;
@@ -149,6 +140,23 @@ header {
 /* coach 페이지 */
 /****************/
 
+.back {
+  position: absolute;
+  float: left;
+  margin: 20px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+
+  text-decoration: none;
+  transition: width 0.3s linear;
+  z-index: 1;
+}
+
+.back:hover {
+  transform: scale(1.3, 1.3);
+}
+
 /* 큰틀 */
 .coach_area {
   margin: 3% 10%;
@@ -183,12 +191,26 @@ header {
 /* 코치 칭찬 영역 */
 .compliment_area {
   border: 2px solid #6d49f2;
+  border-radius: 5px;
+
   margin: 0 5%;
   padding: 20px;
   width: 750px;
   height: 100%;
 
   overflow: auto;
+}
+
+.compliment_area::-webkit-scrollbar {
+  width: 15px;
+}
+
+.compliment_area::-webkit-scrollbar-thumb {
+  background: rgb(154, 154, 154); /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 3px solid transparent;
 }
 
 .compliment_button {
@@ -225,20 +247,19 @@ header {
   padding-bottom: 5px;
 }
 
-/* .compliment_list > ul > li > p:nth-child(2) {
-  line-height: 30px;
-} */
-
 /***********/
 /* 모달 창 */
 /***********/
 
 .modal_layout {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  position: fixed;
+
+  top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.639);
 
-  position: absolute;
   z-index: 99;
 
   display: flex;
@@ -330,11 +351,11 @@ header {
   font-weight: bold;
 }
 
-.modal_submit_cancle {
+.modal_submit_cancel {
   transition: background-color linear;
 }
 
-.modal_submit_cancle:hover {
+.modal_submit_cancel:hover {
   background-color: #de645d;
 }
 
@@ -344,4 +365,226 @@ header {
 
 .modal_submit_button:hover {
   background-color: #9178fa;
+}
+/***************/
+/* 미디어 쿼리 */
+/***************/
+
+@media (min-width: 320px) and (max-width: 960px) {
+  body {
+    width: 100%;
+    height: 100%;
+    font-family: "Gowun Dodum", sans-serif;
+    letter-spacing: 0.3rem;
+    background-color: #dfdddf;
+    /* overflow-x: scroll !important; */
+  }
+
+  .greeting {
+    font-size: 3rem;
+    font-family: "Silkscreen", cursive;
+    letter-spacing: 0.4rem;
+    color: rgb(49, 44, 49);
+
+    animation: star 0.9s linear infinite alternate;
+    z-index: 0;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 10px;
+  }
+
+  .back {
+    position: absolute;
+    float: left;
+    margin: 15px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+
+    text-decoration: none;
+    transition: width 0.3s linear;
+    z-index: 1;
+  }
+
+  .select_coach {
+    margin: 3% 1%;
+    padding: 0;
+    width: 99%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* overflow-x: auto !important; */
+    /* scroll-snap-type: x mandatory; */
+  }
+
+  .coach {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px;
+
+    border: 2px solid #6d49f2;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 10px 10px 20px grey;
+    background-color: white;
+
+    transition-property: width, height;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+
+    color: black;
+    text-decoration: none;
+    scroll-snap-align: center;
+  }
+
+  .coach_area {
+    margin: 3% 10%;
+    padding: 0;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .coach_profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px 0;
+
+    border: 2px solid #6d49f2;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 10px 10px 20px grey;
+    background-color: white;
+  }
+
+  .compliment_area {
+    border: 2px solid #6d49f2;
+    /* margin: 0 5%; */
+    padding: 10px;
+    margin: 30px;
+
+    width: 100%;
+    height: 700px;
+
+    overflow: auto;
+  }
+
+  /* 모달 */
+  .modal_layout {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.639);
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal_layout > .modal {
+    width: 90%;
+    height: 80%;
+    margin-left: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  .modal_layout > .modal > .modal_header {
+    clear: both;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid #8e8e8e;
+  }
+
+  .modal_layout > .modal > .modal_header > p {
+    font-size: 20px;
+  }
+
+  .modal_layout > .modal > .modal_main {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+
+  .modal_layout > .modal > .modal_main > div:nth-child(1) {
+    width: 90%;
+    height: 5rem;
+    margin: 10px;
+  }
+  .modal_layout > .modal > .modal_main > div:nth-child(2) {
+    width: 90%;
+    height: 13rem;
+  }
+
+  .modal_layout > .modal > .modal_main > div > p {
+    margin: 10px 0;
+    font-size: 20px;
+  }
+
+  .modal_main_name {
+    width: 90%;
+    height: 3rem;
+    margin: 2px 0 0 0;
+    padding: 5px;
+  }
+
+  .modal_main_compliment {
+    width: 90%;
+    height: 12rem;
+    margin: 2px 0 0 0;
+
+    padding: 6px;
+    line-height: 170%;
+    resize: none;
+  }
+
+  .modal_submit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .modal_submit > button {
+    margin: 10px 10px;
+    width: 100%;
+    height: 3rem;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: bold;
+  }
 }

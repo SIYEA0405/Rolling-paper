@@ -20,16 +20,11 @@ app.use(bodyParser.json());
 app.use(express.static("client"));
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
+
 app.set("views", __dirname + "/src/views");
 
 //메인페이지 기본 랜더링
-app.get("/", (req, res) => {
-  //res.send("우리 서버 영업합니다..");
-  res.render("index.html");
-});
-
-app.get("/:id", (req, res) => {
-  res.render("coach.html");
-});
+app.get("/", (req, res) => {res.render("index.html")});
+app.get("/:id", (req, res) => res.render("coach.html"));
 
 app.use("/", router);
