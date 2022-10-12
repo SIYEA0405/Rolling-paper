@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set("view engine", "ejs");
+app.engine("html", require("ejs").renderFile);
 app.set("views", __dirname + "/src/views");
 
 app.use("/css", express.static(path.resolve(__dirname, "client/css")));
@@ -27,7 +28,7 @@ app.use("/js", express.static(path.resolve(__dirname, "client/scripts")));
 //load routers(서버에게 주고 받을 경로)
 app.get("/", (req, res) => {
   //res.send("우리 서버 영업합니다..");
-  res.render("index");
+  res.render("index.html");
 });
 
 app.use("/", router);
