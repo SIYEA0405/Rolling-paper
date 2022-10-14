@@ -40,7 +40,12 @@ exports.find = async (req, res) => {
   await UserModel(modelName)
     .find({})
     .then((data) => {
-      res.json(data);
+       let newData = data.map(e => {
+        return {
+          userName: `${e.userName[0]}**`,
+        comment: e.comment}
+      })
+      res.json(newData);
     })
     .catch((err) => {
       res
