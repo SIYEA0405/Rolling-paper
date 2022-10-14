@@ -15,10 +15,10 @@ const coachPage = async () => {
   const coachName = document.querySelector(".coach_name");
   coachName.innerText =
     pathname === "/theory"
-      ? "박연미 코치님"
+      ? "박ㅇㅇ 코치님"
       : pathname === "/class1"
-      ? "이현진 코치님"
-      : "조재훈 코치님";
+      ? "이ㅇㅇ 코치님"
+      : "조ㅇㅇ 코치님";
   const coachImg = document.querySelector("img");
   coachImg.src =
     pathname === "/theory"
