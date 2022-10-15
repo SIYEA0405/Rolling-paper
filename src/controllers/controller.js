@@ -40,6 +40,7 @@ exports.find = async (req, res) => {
   await UserModel(modelName)
     .find({})
     .then((data) => {
+      //newData 는 유저들의 이름을 가려서 가공 후 프론트로 보내주는 가공된 데이터
        let newData = data.map(e => {
         return {
           userName: `${e.userName[0]}**`,
