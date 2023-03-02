@@ -23,13 +23,11 @@ app.engine("html", require("ejs").renderFile);
 
 app.set("views", __dirname + "/src/views");
 
-//메인페이지 기본 랜더링
 app.get("/", (req, res) => res.render("index.html"));
 
 const queryList = ["theory", "class1", "class2"]
 app.get("/:id", async (req, res) => {
   if (queryList.includes(req.params.id)) res.render("coach.html")
-   //query 값이 유효하지 않을 경우 에러메세지 노출
   else {
     res.send(`<h1>잘못된 접근입니다.</h1><br><a href="/">메인페이지 바로가기</a>`)
     return;
