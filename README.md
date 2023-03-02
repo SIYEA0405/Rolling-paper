@@ -70,5 +70,5 @@ Elice SW 3기를 진행하면서 1~5주간 함께 했던 코치님들께 감사�
 - Data의 Schema의 필요성과 Model을 구조를 배울 수 있었다.
 - 짧은 시간이었지만 팀프로젝트를 통해 팀원들과의 신뢰, 시너지를 낸다는게 어떤것인지 느꼈다.
 
-<a href="https://www.notion.so/siyea/ver_1-0-0_-72b108033f2c4851827a29284a94b660">
+<a href="https://siyea.notion.site/ver_1-0-0_-72b108033f2c4851827a29284a94b660">
 26시간동안 일어난 자세한 스토리 보러가기</a>
