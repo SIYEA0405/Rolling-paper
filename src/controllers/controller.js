@@ -1,6 +1,6 @@
-const UserModel = require("./../models/model");
+import UserModel from "../models/model.js";
 // create and save new user 유저들의 post 생성 후 저장
-exports.create = async (req, res) => {
+export async function create(req, res) {
   const modelName = req.params.id;
   if (!req.body) {
     res
@@ -32,32 +32,31 @@ exports.create = async (req, res) => {
       });
       return;
     });
-};
+}
 
 // modelName인 req.baseUrl값으로 db에서 dbName을 찾아서 해당 데이터베이스 안의 모든 필드를 가지고온다.
-exports.find = async (req, res) => {
+export async function find(req, res) {
   const modelName = req.params.id;
   await UserModel(modelName)
     .find({})
     .then((data) => {
       //newData 는 유저들의 이름을 가려서 가공 후 프론트로 보내주는 가공된 데이터
-       let newData = data.map(e => {
+      let newData = data.map((e) => {
         return {
           userName: `${e.userName[0]}**`,
-        comment: e.comment}
-      })
+          comment: e.comment,
+        };
+      });
       res.json(newData);
     })
     .catch((err) => {
-      res
-        .status(500)
-        .json({
-          message:
-            err.message || "Error occurrend while retriving data information",
-        });
+      res.status(500).json({
+        message:
+          err.message || "Error occurrend while retriving data information",
+      });
       return;
     });
-};
+}
 
 // Update new idetified user by user id
 // exports.update = (req, res) => {
