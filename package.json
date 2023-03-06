@@ -1,7 +1,7 @@
 {
   "name": "rolling-paper",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rolling-paper web site",
   "main": "index.js",
   "scripts": {
